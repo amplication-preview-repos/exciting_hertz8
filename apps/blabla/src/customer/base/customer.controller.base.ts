@@ -40,6 +40,9 @@ export class CustomerControllerBase {
   @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Post()
   @swagger.ApiCreatedResponse({ type: Customer })
+  @swagger.ApiBody({
+    type: CustomerCreateInput,
+  })
   @nestAccessControl.UseRoles({
     resource: "Customer",
     action: "create",
@@ -158,6 +161,9 @@ export class CustomerControllerBase {
   @common.Patch("/:id")
   @swagger.ApiOkResponse({ type: Customer })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
+  @swagger.ApiBody({
+    type: CustomerUpdateInput,
+  })
   @nestAccessControl.UseRoles({
     resource: "Customer",
     action: "update",
